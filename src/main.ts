@@ -132,11 +132,9 @@ const init = () => {
   scene.add(directionalLight)
   scene.add(ambientLight);
 
-  const userAction = async () => {
-    const response = await fetch('http://192.168.3.105/api/v1/sensors');
-    const myJson = await response.json(); //extract JSON from the http response
-    console.log(myJson)
-    // do something with myJson
+  const initRobot = async () => {
+    const response = await fetch('http://192.168.3.105/api/v1/realtime/sensor?id=robot-cs&id=robot-patrol&id=robot-sanitize');
+    const myJson = await response.json();
   }
 
   function animate(){
@@ -166,9 +164,7 @@ const init = () => {
   document.getElementById("globalOverlayButton-changeToPosition1")!.addEventListener("click", ()=>{profileIndex=0}, false);
   document.getElementById("globalOverlayButton-changeToPosition2")!.addEventListener("click", ()=>{profileIndex=1}, false);
   document.getElementById("globalOverlayButton-changeToPosition3")!.addEventListener("click", ()=>{profileIndex=2}, false);
-  addNewAnnotation(0,10,0)
-  addNewAnnotation(10,0,0)
-  userAction()
+  initRobot()
   animate()
 }
 
