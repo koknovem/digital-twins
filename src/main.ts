@@ -135,6 +135,7 @@ const init = () => {
   const initRobot = async () => {
     const response = await fetch('http://192.168.3.105/api/v1/realtime/sensor?id=robot-cs&id=robot-patrol&id=robot-sanitize');
     const myJson = await response.json();
+    console.log(myJson)
   }
 
   function animate(){
