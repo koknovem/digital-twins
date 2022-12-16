@@ -133,7 +133,7 @@ const init = () => {
   scene.add(ambientLight);
 
   const userAction = async () => {
-    const response = await fetch('http://192.168.3.105/api/sensors');
+    const response = await fetch('http://192.168.3.105/api/v1/sensors');
     const myJson = await response.json(); //extract JSON from the http response
     console.log(myJson)
     // do something with myJson
