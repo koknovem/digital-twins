@@ -135,7 +135,7 @@ const init = () => {
   const userAction = async () => {
     const response = await fetch('http://192.168.3.105/api/sensors');
     const myJson = await response.json(); //extract JSON from the http response
-    console.log(userAction)
+    console.log(myJson)
     // do something with myJson
   }
 
