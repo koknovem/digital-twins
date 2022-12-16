@@ -29,7 +29,7 @@ const init = () => {
   var profileIndex:number = 0
   var prevPosition:number[] = profiles[profileIndex]
 
-  const ambientLight = new THREE.AmbientLight(0xffffff, 1.0);
+  const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
   
   const scene:THREE.Scene = new THREE.Scene();
   const camera:THREE.PerspectiveCamera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
@@ -139,6 +139,22 @@ const init = () => {
   const initRobot = async () => {
     const response = await fetch('http://192.168.3.105/api/v1/realtime/sensor?id=robot-cs&id=robot-patrol&id=robot-sanitize');
     const myJson = await response.json();
+    // const myJson = {
+    //   "robot-patrol":{
+    //     "BATTERY":"96",
+    //     "BATTERY_CHARGING":"no",
+    //     "x": 10,
+    //     "y":10,
+    //     "time":"time"
+    //   },
+    //   "robot-sanitize":{
+    //     "BATTERY":"96",
+    //     "BATTERY_CHARGING":"no",
+    //     "x": 0,
+    //     "y":0,
+    //     "time":"time"
+    //   }
+    // }
     robots = [myJson['robot-patrol'], myJson['robot-sanitize']]
     robots.map((robot) => {
       addNewAnnotation(robot.x,0,robot.y);
