@@ -189,7 +189,7 @@ const init = () => {
   document.getElementById("globalOverlayButton-changeToPosition1")!.addEventListener("click", () => { profileIndex = 0 }, false);
   document.getElementById("globalOverlayButton-changeToPosition2")!.addEventListener("click", () => { profileIndex = 1 }, false);
   document.getElementById("globalOverlayButton-changeToPosition3")!.addEventListener("click", () => { profileIndex = 2 }, false);
-  document.getElementById("globalOverlayButton-test")!.addEventListener("click", () => { console.log(API.getTemperature()) }, false);
+  document.getElementById("globalOverlayButton-test")!.addEventListener("click", () => { API.getTemperature().then((value)=>{console.log(value)}) }, false);
   initRobot()
   animate()
 }
