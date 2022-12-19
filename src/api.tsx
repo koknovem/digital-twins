@@ -18,15 +18,14 @@ export const fetchZones = async (): Promise<interfaces.zone[]> => {
 
 export const getTemperatureSensorUrl = async (): Promise<string> => {
     let requestUrl = "http://192.168.3.105/api/v1/realtime/sensor?"
-    fetchSensors().then((sensors: interfaces.sensor[]) => {
+    await fetchSensors().then((sensors: interfaces.sensor[]) => {
         sensors.forEach((sensor) => {
             if (sensor.id.includes("IAQsensor")) {
                 requestUrl += "&id=" + sensor.id;
-                console.log(requestUrl)
             }
         })
-    })
-    return requestUrl;
+    });
+    return Promise.resolve(requestUrl);
 }
 
 export const fetchTemperature = async (url: string): Promise<interfaces.temperatureSensorValue[]> => {
@@ -37,7 +36,7 @@ export const fetchTemperature = async (url: string): Promise<interfaces.temperat
 
 export const getTemperature = (): interfaces.temperatureSensorValue[] => {
     let requestUrl: string;
-    let temperatureValues:interfaces.temperatureSensorValue[] = []
+    let temperatureValues: interfaces.temperatureSensorValue[] = []
     getTemperatureSensorUrl().then((url: string) => {
         requestUrl = url
         fetchTemperature(requestUrl).then((temperatureSensors: interfaces.temperatureSensorValue[]) => {
