@@ -1,3 +1,5 @@
+import { NumberKeyframeTrack } from "three"
+
 export interface sensor {
     name: string,
     posX: number,
@@ -8,14 +10,18 @@ export interface sensor {
 }
 
 export interface zone {
+    extra: string,
+    id: string,
     name: string,
-    width: number,
-    height: number,
-    posX: number,
-    posY: number,
-    time: string,
-    data: any,
-    group: number,
+    position: {
+        x: number,
+        y: number,
+        z: number
+    },
+    scale: number,
+    shartName: string,
+    type: string,
+    visible: boolean,
 }
 
 export interface robot {
