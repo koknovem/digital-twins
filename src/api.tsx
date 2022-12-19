@@ -25,7 +25,7 @@ export const getTemperatureSensorUrl = async (): Promise<string> => {
             }
         })
         console.log(requestUrl)
-        return requestUrl;
+        return Promise.resolve(requestUrl);
     });
 }
 
