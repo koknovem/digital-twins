@@ -35,16 +35,16 @@ export const fetchTemperature = async (url: string): Promise<interfaces.temperat
     return temperatures
 }
 
-export const getTemperature = (): interfaces.temperatureSensorValue[] => {
+export const getTemperature = async (): Promise<interfaces.temperatureSensorValue[]> => {
     let temperatureValues: interfaces.temperatureSensorValue[] = []
-    getTemperatureSensorUrl().then((url: string) => {
-        console.log(url)
-        fetchTemperature(url).then((temperatureSensors: interfaces.temperatureSensorValue[]) => {
-            console.log(temperatureSensors)
-            temperatureValues = temperatureSensors
+    await getTemperatureSensorUrl().then(async (url: string) => {
+        await console.log(url)
+        fetchTemperature(url).then(async (temperatureSensors: interfaces.temperatureSensorValue[]) => {
+            await console.log(temperatureSensors);
+            temperatureValues = temperatureSensors;
         })
     })
-    console.log(temperatureValues)
+    await console.log(temperatureValues)
     return temperatureValues
 }
 export default api;

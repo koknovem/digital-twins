@@ -188,7 +188,7 @@ const init = () => {
   document.getElementById("globalOverlayButton-changeToPosition2")!.addEventListener("click", () => { profileIndex = 1 }, false);
   document.getElementById("globalOverlayButton-changeToPosition3")!.addEventListener("click", () => { profileIndex = 2 }, false);
   document.getElementById("globalOverlayButton-temperature")!.addEventListener("click", () => {
-    console.log(API.getTemperature())
+    console.log(API.getTemperature().then((value) => {console.log(value)}))
   }, false);
   // document.getElementById("globalOverlayButton-zone")!.addEventListener("click", () => {
   //   API.getZones().then((value) => { console.log(value) })
