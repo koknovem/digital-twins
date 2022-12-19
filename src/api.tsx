@@ -25,8 +25,8 @@ export const getTemperatureSensorUrl = async (): Promise<string> => {
                 console.log(requestUrl)
             }
         })
+        return Promise.resolve(requestUrl);
     });
-    return Promise.resolve(requestUrl);
 }
 
 export const fetchTemperature = async (url: string): Promise<interfaces.temperatureSensorValue[]> => {
