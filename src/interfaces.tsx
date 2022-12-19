@@ -17,3 +17,11 @@ export interface zone {
     data: any,
     group: number,
 }
+
+export interface robot {
+    online: number,
+    "robot-cs": any,
+    "robot-patrol": any,
+    "robot-sanitize": any,
+    total: number,
+}

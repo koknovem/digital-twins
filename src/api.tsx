@@ -4,9 +4,15 @@ function api() {
 }
 
 export const getTemperature = async (): Promise<interfaces.sensor[]> => {
-    const response = await fetch('http://192.168.3.105/api/v1/realtime/sensor?id=robot-cs&id=robot-patrol&id=robot-sanitize');
+    const response = await fetch('http://192.168.3.169:8080/api/sensors');
     const sensors:interfaces.sensor[] = await response.json()
     return sensors;
 }
 
+export const getZones = async ():Promise<interfaces.zone[]> =>{
+    const response = await fetch('http://192.168.3.169:8080/api/v1/sensors');
+    const zones:interfaces.zone[] = await response.json()
+    return zones;
+
+}
 export default api;
