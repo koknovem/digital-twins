@@ -5,29 +5,44 @@ function api() {
 
 export const fetchSensors = async (): Promise<interfaces.sensor[]> => {
     const response = await fetch('http://192.168.3.105/api/v1/sensors');
-    const sensors: interfaces.sensor[] = await response.json()
+    const sensors: interfaces.sensor[] = await response.json();
     return sensors;
 }
 
 export const fetchZones = async (): Promise<interfaces.zone[]> => {
     const response = await fetch('http://192.168.3.105/api/v1/zones');
-    const zones: interfaces.zone[] = await response.json()
+    const zones: interfaces.zone[] = await response.json();
     return zones;
 }
 
 
-export const fetchTemperature = (): interfaces.temperatureSensorValue[] => {
-    let temperatures: interfaces.temperatureSensorValue[] = []
+export const getTemperatureSensorUrl = async (): Promise<string> => {
+    let requestUrl = "http://192.168.3.105/api/v1/realtime/sensor?&"
     fetchSensors().then((sensors: interfaces.sensor[]) => {
-        let requestUrl = "http://192.168.3.105/api/v1/realtime/sensor?&"
         sensors.forEach((sensor) => {
-            console.log(sensor, sensor.id.includes("IAQsensor"))
             if (sensor.id.includes("IAQsensor")) {
-                requestUrl.concat("id=", sensor.id, "&")
+                requestUrl = requestUrl.concat("id=", sensor.id, "&");
             }
         })
-        console.log(requestUrl)
     })
-    return temperatures;
+    return requestUrl;
+}
+
+export const fetchTemperature = async (url: string): Promise<interfaces.temperatureSensorValue[]> => {
+    const response = await fetch(url);
+    const temperatures = response.json();
+    return temperatures
+}
+
+export const getTemperature = (): interfaces.temperatureSensorValue[] => {
+    let requestUrl: string;
+    let temperatureValues:interfaces.temperatureSensorValue[] = []
+    getTemperatureSensorUrl().then((url: string) => {
+        requestUrl = url
+        fetchTemperature(requestUrl).then((temperatureSensors: interfaces.temperatureSensorValue[]) => {
+            temperatureValues = temperatureSensors
+        })
+    })
+    return temperatureValues
 }
 export default api;
