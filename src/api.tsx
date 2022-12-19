@@ -22,10 +22,10 @@ export const getTemperatureSensorUrl = async (): Promise<string> => {
         sensors.forEach((sensor) => {
             if (sensor.id.includes("IAQsensor")) {
                 requestUrl += "&id=" + sensor.id;
-                console.log(requestUrl)
             }
         })
-        return Promise.resolve(requestUrl);
+        console.log(requestUrl)
+        return requestUrl;
     });
 }
 
