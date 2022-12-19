@@ -14,8 +14,6 @@ import {
 } from "@masatomakino/threejs-interactive-object";
 
 
-
-
 const init = () => {
 
   let robots: { BATTERY: string, BATTERY_CHARGING: string, x: number, y: number, time: string }[]
@@ -189,8 +187,12 @@ const init = () => {
   document.getElementById("globalOverlayButton-changeToPosition1")!.addEventListener("click", () => { profileIndex = 0 }, false);
   document.getElementById("globalOverlayButton-changeToPosition2")!.addEventListener("click", () => { profileIndex = 1 }, false);
   document.getElementById("globalOverlayButton-changeToPosition3")!.addEventListener("click", () => { profileIndex = 2 }, false);
-  document.getElementById("globalOverlayButton-temperature")!.addEventListener("click", () => { API.getTemperature().then((value) => { console.log(value) }) }, false);
-  document.getElementById("globalOverlayButton-zone")!.addEventListener("click", () => { API.getZones().then((value) => { console.log(value) }) }, false);
+  document.getElementById("globalOverlayButton-temperature")!.addEventListener("click", () => {
+    API.fetchTemperature()
+  }, false);
+  // document.getElementById("globalOverlayButton-zone")!.addEventListener("click", () => {
+  //   API.getZones().then((value) => { console.log(value) })
+  // }, false);
   initRobot()
   animate()
 }
